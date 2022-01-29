@@ -1,0 +1,1 @@
+Signed distance convention: - interior, 0 surface, + exterior

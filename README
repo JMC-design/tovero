@@ -1,0 +1,33 @@
+Tovero
+
+Tovero is a 3D modeling system for Common Lisp.
+
+As a 3D modeler, Tovero takes a high level specification of a shape
+(in Lisp) as an input and outputs one of several lower level geometric
+representations such as a set of triangles, pixels/voxels, or
+polygonal slices.  This lower level geometric representation (binary
+format) can then be used downstream for display or manufacturing.  It
+does not provide attributes such as color or texture.  The modeling
+technique used is "f-rep"--functional representation.
+
+A shape in Tovero is a lambda function taking x, y, z parameters (as a
+point) and returning a signed distance to the shape from that point,
+with negative values inside the shape.  Shapes can be composed with
+other shapes to build up arbitrarily complex geometry. This renders a
+sphere to a set of triangles and uses the basic Tovero Viewer to
+display it:
+
+    (make-viewer)
+    (let* ((s (sphere 0.5))
+           (bounds '((-2 . 2) (-2 . 2) (-2 . 2)))
+           (resolution 10))
+      (set-shape s bounds resolution))
+
+See the ./examples directory for complete code samples.
+
+For a more comprehensive viewing UI, try the Clive
+(https://www.common-lisp.net/project/clive) project.
+
+Note: Tovero is currently a preview and is of 'alpha' quality.  It is
+not meant to be used in production systems at this time.  Things can
+and will change.

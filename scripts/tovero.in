@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# tovero
+#
+# Copyright 2018 Kavalogic, Inc.
+#
+# This file is part of Tovero.
+#
+# Tovero is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# Tovero is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.  You should have received a
+# copy of the GNU General Public License along with Tovero. If not,
+# see <http://www.gnu.org/licenses/>.
+
+# usage: tovero [-s | -e] model-file
+
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${libdir}@CFG_TOVERO_LIBRARY_PARALLEL@"
+
+if [ "${1}" = "-s" ] ; then
+    TOVERO_LISP_FILE="${2}"
+    shift 2
+    sbcl --load "${TOVERO_LISP_FILE}" "$@"
+elif [ "${1}" = "-e" ] ; then
+    TOVERO_LISP_FILE="${2}"
+    shift 2
+    ecl --load "${TOVERO_LISP_FILE}" "$@"
+else
+    TOVERO_EDITOR="${EDITOR}"
+    if [ "x${TOVERO_EDITOR}" = "x" ] ; then
+        TOVERO_EDITOR="emacs"
+    fi
+    "${TOVERO_EDITOR}" "$@" --execute "(slime)"
+fi

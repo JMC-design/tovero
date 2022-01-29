@@ -1,0 +1,35 @@
+Required Libraries
+------------------
+o libfive (and its required libraries)
+  (https://www.libfive.com/)
+
+Lisp Distribution
+-----------------
+(Not needed during compilation or installation, but needed to run
+installed Lisp files.)
+
+o ECL [version 16.1.3 or later]
+  (https://common-lisp.net/project/ecl/)
+
+  -or-
+
+o SBCL [version 1.3.21 or later]
+  (http://www.sbcl.org/)
+
+Lisp Packages
+-------------
+o QuickLisp
+  (https://www.quicklisp.org/beta/)
+
+o cffi
+  (https://common-lisp.net/project/cffi/)
+
+o trivial-garbage
+  (https://common-lisp.net/project/trivial-garbage/)
+
+o clive (required only for use with Clive)
+  (https://common-lisp.net/project/clive/)
+
+o cl-opengl (required only for Tovero Viewer)
+  (https://www.common-lisp.net/project/cl-opengl/)
+
